@@ -30,7 +30,8 @@ try {
         $classOne = new ClassOne($file);
     } elseif ($action == "minus") {
         include 'files/ClassTwo.php';
-        $classTwo = new ClassTwo();
+        $classTwo = new ClassTwo($file, "minus");
+        $classTwo->start();
     } elseif ($action == "multi") {
         include 'files/Classthree.php';
         $classThree = new Classthree();
