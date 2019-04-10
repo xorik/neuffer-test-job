@@ -32,9 +32,11 @@ try {
         include 'files/ClassTwo.php';
         $classTwo = new ClassTwo($file, "minus");
         $classTwo->start();
-    } elseif ($action == "multi") {
+    } elseif ($action == "multiply") {
         include 'files/Classthree.php';
         $classThree = new Classthree();
+        $classThree->setFile($file);
+        $classThree->execute();
     } elseif ($action == "division") {
         include 'files/classFour.php';
         $classFouyr = new classFour();
