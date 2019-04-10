@@ -39,7 +39,7 @@ try {
         $classThree->execute();
     } elseif ($action == "division") {
         include 'files/classFour.php';
-        $classFouyr = new classFour();
+        $classFouyr = new classFour($file);
     } else {
         throw new \Exception("Wrong action is selected");
     }
