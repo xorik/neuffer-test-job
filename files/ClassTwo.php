@@ -4,7 +4,6 @@ class ClassTwo
 {
     private $file;
     private $action;
-    private const TEST_FILE = "test.csv";
 
     public function __construct($file, $action = "minus")
     {
@@ -17,7 +16,7 @@ class ClassTwo
         $fp = fopen("log.txt", "w+");
         fwrite($fp, "Started minus operation \r\n");
 
-        $data = fopen(self::TEST_FILE, "r");
+        $data = fopen($this->file, "r");
         if(!$data) throw new \Exception("File cannot be openned");
 
         if(file_exists("result.csv")) {
