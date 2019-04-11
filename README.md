@@ -59,9 +59,11 @@ You need to refactor code and write it on proper way. Just do your best: update/
 After finishing - please push your code in your github/bitbucket account, and send me link back.
 
 ###Requirements
-<ul>
-<li>After refactoring code shoud work</li>
-<li>Code should work on PHP7.2+</li>
-<li>As file source example please use test.csv</li>
-</ul>
+
+*After refactoring code shoud work</li>
+*Code should work on PHP7.2+</li>
+*As file source example please use test.csv</li>
+
+###Result
+Please put result of your work in your Github or Bitbucket account, and send link back.
 
