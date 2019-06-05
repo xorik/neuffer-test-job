@@ -41,25 +41,25 @@ class App
      */
     public function run(): void
     {
-        $data = $this->csvParser->load($this->file);
+        $input = $this->csvParser->load($this->file);
         $action = $this->actionFactory->createAction($this->action);
 
         // Log header
         $this->logger->log("Started {$this->action} operation");
 
-        $input = [];
-        foreach ($data as $line) {
+        $output = [];
+        foreach ($input as $line) {
             list($a, $b) = $line;
 
             try {
                 $calcResult = $action->calc($a, $b);
-                $input[] = [$a, $b, $calcResult];
+                $output[] = [$a, $b, $calcResult];
             } catch (ActionException $e) {
                 $this->logger->log($e->getMessage());
             }
         }
 
-        $this->csvParser->save(self::RESULT_FILE, $input);
+        $this->csvParser->save(self::RESULT_FILE, $output);
         $this->logger->log("Finished {$this->action} operation");
     }
 }
