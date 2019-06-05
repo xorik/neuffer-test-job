@@ -7,7 +7,7 @@ use App\Exceptions\InvalidArgumentException;
 
 class App
 {
-    protected const RESULT_FILE = 'result.csv';
+    const RESULT_FILE = 'result.csv';
 
     /** @var string */
     protected $action;
