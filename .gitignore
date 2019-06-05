@@ -4,3 +4,4 @@ log.txt
 result.csv
 
 /vendor/
+/.php_cs.cache
