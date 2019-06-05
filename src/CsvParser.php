@@ -43,7 +43,7 @@ class CsvParser
      */
     public function save(string $file, array $data): void
     {
-        $csv = fopen($file, 'w');
+        $csv = @fopen($file, 'w');
         if (false === $csv) {
             throw new OpenFileException('Error opening file: '.$file);
         }
