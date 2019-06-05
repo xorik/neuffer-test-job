@@ -4,7 +4,7 @@ namespace App;
 
 class Logger
 {
-    protected const LOG_FILE = 'log.txt';
+    const LOG_FILE = 'log.txt';
 
     protected $handle;
 
@@ -21,5 +21,6 @@ class Logger
     public function log(string $message): void
     {
         fwrite($this->handle, $message."\n");
+        fflush($this->handle);
     }
 }
