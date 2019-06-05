@@ -1,0 +1,15 @@
+{
+    "name": "xorik/developers-test",
+    "authors": [
+        {
+            "name": "Andrey Smelov",
+            "email": "xor29a@bk.ru"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "": "files/"
+        }
+    }
+}
