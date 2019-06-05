@@ -7,6 +7,8 @@ use App\Exceptions\InvalidArgumentException;
 
 class App
 {
+    protected const RESULT_FILE = 'result.csv';
+
     /** @var string */
     protected $action;
     /** @var string */
@@ -15,19 +17,27 @@ class App
     protected $csvParser;
     /** @var ActionFactory */
     protected $actionFactory;
+    /** @var Logger */
+    private $logger;
 
     /**
+     * @param CsvParser     $csvParser
+     * @param ActionFactory $actionFactory
+     * @param Logger        $logger
+     *
      * @throws InvalidArgumentException
      */
-    public function __construct(CsvParser $csvParser, ActionFactory $actionFactory)
+    public function __construct(CsvParser $csvParser, ActionFactory $actionFactory, Logger $logger)
     {
         $this->csvParser = $csvParser;
         $this->actionFactory = $actionFactory;
+        $this->logger = $logger;
         $this->init();
     }
 
     /**
      * @throws Exceptions\FileIsNotExistsException
+     * @throws Exceptions\OpenFileException
      * @throws InvalidArgumentException
      */
     public function run(): void
@@ -35,17 +45,23 @@ class App
         $data = $this->csvParser->load($this->file);
         $action = $this->actionFactory->createAction($this->action);
 
+        // Log header
+        $this->logger->log("Started {$this->action} operation");
+
+        $input = [];
         foreach ($data as $line) {
             list($a, $b) = $line;
 
             try {
-                $result = $action->calc($a, $b);
+                $calcResult = $action->calc($a, $b);
+                $input[] = [$a, $b, $calcResult];
             } catch (ActionException $e) {
-                // TODO: log
+                $this->logger->log($e->getMessage());
             }
-
-            // TODO: save to file
         }
+
+        $this->csvParser->save(self::RESULT_FILE, $input);
+        $this->logger->log("Finished {$this->action} operation");
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Exceptions\FileIsNotExistsException;
+use App\Exceptions\OpenFileException;
 
 class CsvParser
 {
@@ -34,8 +35,24 @@ class CsvParser
         return $result;
     }
 
-    public function save(array $data): void
+    /**
+     * @param string $file
+     * @param array  $data
+     *
+     * @throws OpenFileException
+     */
+    public function save(string $file, array $data): void
     {
-        // TODO
+        $csv = fopen($file, 'w');
+        if (false === $csv) {
+            throw new OpenFileException('Error opening file: '.$file);
+        }
+
+        foreach ($data as $line) {
+            fputcsv($csv, $line, ';');
+        }
+
+        fflush($csv);
+        fclose($csv);
     }
 }

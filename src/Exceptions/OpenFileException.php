@@ -1,7 +1,7 @@
 <?php
-namespace Exceptions;
 
-class OpenFileException
+namespace App\Exceptions;
+
+class OpenFileException extends DomainException
 {
-
 }
