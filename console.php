@@ -2,6 +2,7 @@
 
 use App\ActionFactory;
 use App\App;
+use App\ArgumentParser;
 use App\CsvParser;
 use App\Exceptions\DomainException;
 use App\Logger;
@@ -13,7 +14,8 @@ $actionFactory = new ActionFactory();
 $logger = new Logger();
 
 try {
-    $app = new App($csvParser, $actionFactory, $logger);
+    $argumentParser = new ArgumentParser();
+    $app = new App($argumentParser, $csvParser, $actionFactory, $logger);
     $app->run();
 } catch (DomainException $e) {
     echo 'Error occurred: '.$e->getMessage()."\n";
