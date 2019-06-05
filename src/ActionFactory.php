@@ -3,7 +3,9 @@
 namespace App;
 
 use App\Actions\ActionInterface;
+use App\Actions\DivideAction;
 use App\Actions\MinusAction;
+use App\Actions\MultiplyAction;
 use App\Actions\PlusAction;
 use App\Exceptions\InvalidArgumentException;
 
@@ -24,7 +26,10 @@ class ActionFactory
                 return new PlusAction();
             case self::ACTION_MINUS:
                 return new MinusAction();
-            // TODO: finish
+            case self::ACTION_MULT:
+                return new MultiplyAction();
+            case self::ACTION_DIV:
+                return new DivideAction();
             default:
                 throw new InvalidArgumentException('Invalid action: '.$action);
         }

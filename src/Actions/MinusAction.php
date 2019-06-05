@@ -12,9 +12,9 @@ class MinusAction implements ActionInterface
      *
      * @throws ActionException
      *
-     * @return int
+     * @return float
      */
-    public function calc(int $a, int $b): int
+    public function calc(int $a, int $b): float
     {
         $diff = $a - $b;
 

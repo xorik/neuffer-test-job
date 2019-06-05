@@ -4,7 +4,7 @@ namespace App\Actions;
 
 use App\Exceptions\ActionException;
 
-class PlusAction implements ActionInterface
+class MultiplyAction implements ActionInterface
 {
     /**
      * @param int $a
@@ -16,12 +16,12 @@ class PlusAction implements ActionInterface
      */
     public function calc(int $a, int $b): float
     {
-        $sum = $a + $b;
+        $mult = $a * $b;
 
-        if ($sum < 0) {
+        if ($mult < 0) {
             throw new ActionException("numbers {$a} and {$b} are wrong");
         }
 
-        return $sum;
+        return $mult;
     }
 }
