@@ -16,7 +16,7 @@ class DivideAction implements ActionInterface
      */
     public function calc(int $a, int $b): float
     {
-        if ($b < 0) {
+        if (0 === $b) {
             throw new ActionException("numbers {$a} and {$b} are wrong");
         }
 
@@ -26,6 +26,6 @@ class DivideAction implements ActionInterface
             throw new ActionException("numbers {$a} and {$b} are wrong");
         }
 
-        return (int) $result;
+        return $result;
     }
 }
