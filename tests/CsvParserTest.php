@@ -20,7 +20,7 @@ class CsvParserTest extends TestCase
         $this->expectException(FileIsNotExistsException::class);
         $this->expectExceptionMessage('Can\'t find file: not-exists.csv');
 
-        $this->parser->load(__DIR__.'not-exists.csv');
+        $this->parser->load('not-exists.csv');
     }
 
     public function testLoad()
