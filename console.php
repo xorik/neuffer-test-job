@@ -1,44 +1,18 @@
 <?php
 
-require __DIR__ . '/vendor/autoload.php';
+use App\ActionFactory;
+use App\App;
+use App\CsvParser;
+use App\Exceptions\DomainException;
 
-$shortopts = "a:f:";
-$longopts  = array(
-    "action:",
-    "file:",
-);
+require __DIR__.'/vendor/autoload.php';
 
-$options = getopt($shortopts, $longopts);
-
-if(isset($options['a'])) {
-    $action = $options['a'];
-} elseif(isset($options['action'])) {
-    $action = $options['action'];
-} else {
-    $action = "xyz";
-}
-
-if(isset($options['f'])) {
-    $file = $options['f'];
-} elseif(isset($options['file'])) {
-    $file = $options['file'];
-} else {
-    $file = "notexists.csv";
-}
+$csvParser = new CsvParser();
+$actionFactory = new ActionFactory();
 
 try {
-    if ($action == "plus") {
-        $classOne = new ClassOne($file);
-    } elseif ($action == "minus") {
-        $classTwo = new ClassTwo($file, "minus");
-        $classTwo->start();
-    } elseif ($action == "multiply") {
-        $classThree = new Classthree();
-        $classThree->setFile($file);
-        $classThree->execute();
-    } elseif ($action == "division") {
-        $classFouyr = new classFour($file);
-    } else {
-        throw new \Exception("Wrong action is selected");
-    }
-} catch (\Exception $exception) {}
+    $app = new App($csvParser, $actionFactory);
+    $app->run();
+} catch (DomainException $e) {
+    echo 'Error occurred: '.$e->getMessage()."\n";
+}
